@@ -35,8 +35,8 @@ services:
         ENABLE_FULL_SKILLS: "${ENABLE_FULL_SKILLS:-false}"
         VERSION: "${GOCLAW_VERSION:-dev}"
     # Uncomment to test update UI: GOCLAW_VERSION=v1.0.0
-    ports:
-      - "${GOCLAW_PORT:-18790}:18790"
+    #ports:
+    #  - "18790"
     env_file:
       - path: .env
         required: false
@@ -50,8 +50,8 @@ services:
       # Debug
       - GOCLAW_TRACE_VERBOSE=${GOCLAW_TRACE_VERBOSE:-0}
     volumes:
-      - goclaw-data:/app/data
-      - goclaw-workspace:/app/workspace
+      - ./goclaw-data:/app/data
+      - ./goclaw-workspace:/app/workspace
     extra_hosts:
       - "host.docker.internal:host-gateway"
     security_opt:
@@ -75,10 +75,6 @@ services:
       - default
       - goclaw-net
     restart: unless-stopped
-
-volumes:
-  goclaw-data:
-  goclaw-workspace:
 
 networks:
   goclaw-net:
